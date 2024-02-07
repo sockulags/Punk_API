@@ -1,0 +1,247 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Dosis', sans-serif;
+}
+
+header{
+    background-image: url("poster.png");
+    height: 300px;
+    background-size: contain;
+    background-color: #ffd052;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 600px) {
+    header{
+        background-size: cover;
+    }
+  }
+
+/* HEADER TEXT*/
+
+
+body {
+  background: #ffd052;
+}
+
+.header {
+ font-family: "Exo 2", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.title-wrapper {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.top-title {
+  order: 1;
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.bottom-title {
+  order: 3;
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin-top: 2rem;
+  padding-left: 2rem;
+}
+
+.sweet-title {
+  order: 2;
+  color: #fde9ff;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.75em;
+  text-align: center;
+  text-shadow: 3px 1px 1px #289dca, 2px 2px 1px #777878, 4px 2px 1px #289dca,
+    3px 3px 1px #777878, 5px 3px 1px #289dca, 4px 4px 1px #777878,
+    6px 4px 1px #289dca, 5px 5px 1px #777878, 7px 5px 1px #289dca,
+    6px 6px 1px #777878, 8px 6px 1px #289dca, 7px 7px 1px #777878,
+    9px 7px 1px #289dca;
+
+  span {
+    display: block;
+    position: relative;
+
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      text-shadow: 2px 2px 1px #777878, -1px -1px 1px #777878,
+        -2px 2px 1px #777878, 1px -1px 1px #289dca;
+      z-index: 1;
+    }
+
+    &:nth-child(1) {
+      padding-right: 2.25rem;
+    }
+
+    &:nth-child(2) {
+      padding-left: 2.25rem;
+    }
+  }
+}
+
+
+/* CARDS */
+
+
+h2{ 
+  font-size:30px;
+}
+#container{
+  height:100vh;
+  width:100vw;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  padding:0;
+}
+.card{
+  margin:0 30px;
+  height:600px;
+  width:350px;
+  background-color:#fff;
+  border:5px solid rgb(61, 60, 60);
+  box-shadow:0 0 0 7px #fff,0 0  8px 5px #008cff;
+}
+.card-image{
+  position:relative;
+  width:100%;
+  border-bottom:5px solid #424141;
+  z-index:1;
+}
+.card-image>img{
+  position:absolute;
+  z-index:2;
+  height:100%;
+}
+#hulk>.card-image{
+  height:55%;
+  background-color:#fff382;
+}
+#hulk>.card-image>img{
+  height:100%;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+#hulk h2{
+  color:#030300;  
+  text-align:center;
+  margin-top:10px;
+}
+#hulk p{
+  font-size: 22px;
+  font-weight:500;
+  text-align:center;
+}
+#hulk>.card-text{
+  height:45%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.card-text>div{
+  display:flex;
+  justify-content:space-between;
+}
+#hulk>.card-text>div>div{
+  display:flex; 
+  padding:0 20px;
+  text-wrap:nowrap;
+  width: 100%;
+  margin-left: 150px;
+}
+#hulk>.card-text>div>div>span{
+flex:1;
+  font-size:1.2rem;
+  align-self: flex-end;
+  margin-bottom: 12px;
+  font-weight:500;
+  color: #777878;
+}
+#hulk>.card-text>div>.more:hover>span{
+    color:#030300;
+}
+#hulk>.card-text>div>.more:active>span{
+    color:#ffd052;
+}
+#hulk>.card-text>div>div>.see-more{
+    font-size: 3rem;
+    align-self: flex-end;
+    margin-bottom: 0;
+}
+#spiderman>.card-image{
+  height:72%;
+  background-color:#5CAAB4;
+}
+#spiderman>.card-image>img{
+  width:130%;
+  height:90%;
+  margin-top:20px;
+  margin-left:-30px;
+}
+#spiderman h2{
+  font-size:3rem;
+  letter-spacing:5px;
+  text-align:center;
+  margin-left:10px;
+  color:#2E5579;
+}
+#spiderman>.card-text>div{
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  padding-top:5px;
+}
+#spiderman>.card-text>div>div:first-child{
+  display:flex;
+  flex-direction:column;
+}
+#spiderman>.card-text>div>div:first-child>span{
+  font-size:1.5rem;
+  line-height:30px;
+  font-weight:500;
+}
+#spiderman>.card-text>div>div:last-child{
+  display:flex;
+}
+#spiderman>.card-text>div>div:last-child>span:first-child{
+  font-size:5rem;
+  font-weight:800;
+    line-height:60px;
+}
+
+#spiderman>.card-text>div>div:last-child>span:last-child{
+  font-weight:600;
+  font-size:1.3rem;
+}
+
+.see-more{     
+    justify-self: flex-end;
+    text-align: right;
+}
+
+.more{
+    cursor: pointer;
+    color: #777878;
+}
