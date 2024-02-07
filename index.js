@@ -13,19 +13,18 @@ try {
     console.log(data[0]);
     return data[0];
   } catch (error) {
-    // Handle errors
     console.error('There was a problem with the fetch operation:', error);
   }
 }
 
 const randomBeer = await fetchData();
-container.innerHTML = hulk(randomBeer);
+container.innerHTML = beerCard(randomBeer);
 
 
 
-function hulk(randomBeer) {
-    return `<div class="card" id="hulk">
-<div class="card-image">
+function beerCard(randomBeer) {
+    return `<div class="card" id="random-beer">
+<div class="card-image" style="background-color:${randomHexColor()}">
   <img src="${randomBeer.image_url ?? imageNotFound}"/>
 </div>
 <div class="card-text">
@@ -40,4 +39,13 @@ function hulk(randomBeer) {
 </div>
 `
 }
+
+function randomHexColor() {    
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 

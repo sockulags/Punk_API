@@ -1,32 +1,31 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Dosis', sans-serif;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Dosis", sans-serif;
 }
 
-header{
-    background-image: url("poster.png");
-    height: 300px;
-    background-size: contain;
-    background-color: #ffd052;
-    background-repeat: no-repeat;
+header {
+  background-image: url("poster.png");
+  height: 300px;
+  background-size: contain;
+  background-color: #ffd052;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 600px) {
-    header{
-        background-size: cover;
-    }
+  header {
+    background-size: cover;
   }
+}
 
 /* HEADER TEXT*/
-
 
 body {
   background: #ffd052;
 }
 
 .header {
- font-family: "Exo 2", sans-serif;
+  font-family: "Exo 2", sans-serif;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
@@ -40,7 +39,6 @@ body {
   display: grid;
   align-items: center;
   justify-content: center;
-
 }
 
 .top-title {
@@ -99,149 +97,100 @@ body {
   }
 }
 
-
 /* CARDS */
 
-
-h2{ 
-  font-size:30px;
+h2 {
+  font-size: 30px;
 }
-#container{
-  height:100vh;
-  width:100vw;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0;
-  padding:0;
+#container {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
 }
-.card{
-  margin:0 30px;
-  height:600px;
-  width:350px;
-  background-color:#fff;
-  border:5px solid rgb(61, 60, 60);
-  box-shadow:0 0 0 7px #fff,0 0  8px 5px #008cff;
+.card {
+  margin: 0 30px;
+  height: 600px;
+  width: 350px;
+  background-color: #fff;
+  border: 5px solid rgb(61, 60, 60);
+  box-shadow: 0 0 0 7px #fff, 0 0 8px 5px #008cff;
 }
-.card-image{
-  position:relative;
-  width:100%;
-  border-bottom:5px solid #424141;
-  z-index:1;
+.card-image {
+  position: relative;
+  width: 100%;
+  border-bottom: 5px solid #424141;
+  z-index: 1;
 }
-.card-image>img{
-  position:absolute;
-  z-index:2;
-  height:100%;
+.card-image > img {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
 }
-#hulk>.card-image{
-  height:55%;
-  background-color:#fff382;
+#random-beer > .card-image {
+  height: 55%; 
 }
-#hulk>.card-image>img{
-  height:100%;
-  left:50%;
-  transform:translateX(-50%);
+#random-beer > .card-image > img {
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-#hulk h2{
-  color:#030300;  
-  text-align:center;
-  margin-top:10px;
+h2 {
+  color: #030300;
+  text-align: center;
+  margin-top: 10px;
 }
-#hulk p{
+#random-beer p {
   font-size: 22px;
-  font-weight:500;
-  text-align:center;
+  font-weight: 500;
+  text-align: center;
 }
-#hulk>.card-text{
-  height:45%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+#random-beer > .card-text {
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.card-text>div{
-  display:flex;
-  justify-content:space-between;
+.card-text > div {
+  display: flex;
+  justify-content: space-between;
 }
-#hulk>.card-text>div>div{
-  display:flex; 
-  padding:0 20px;
-  text-wrap:nowrap;
+#random-beer > .card-text > div > div {
+  display: flex;
+  padding: 0 20px;
+  text-wrap: nowrap;
   width: 100%;
   margin-left: 150px;
 }
-#hulk>.card-text>div>div>span{
-flex:1;
-  font-size:1.2rem;
+#random-beer > .card-text > div > div > span {
+  flex: 1;
+  font-size: 1.2rem;
   align-self: flex-end;
   margin-bottom: 12px;
-  font-weight:500;
+  font-weight: 500;
   color: #777878;
 }
-#hulk>.card-text>div>.more:hover>span{
-    color:#030300;
+#random-beer > .card-text > div > .more:hover > span {
+  color: #030300;
 }
-#hulk>.card-text>div>.more:active>span{
-    color:#ffd052;
+#random-beer > .card-text > div > .more:active > span {
+  color: #ffd052;
 }
-#hulk>.card-text>div>div>.see-more{
-    font-size: 3rem;
-    align-self: flex-end;
-    margin-bottom: 0;
+#random-beer > .card-text > div > div > .see-more {
+  font-size: 3rem;
+  align-self: flex-end;
+  margin-bottom: 0;
 }
-#spiderman>.card-image{
-  height:72%;
-  background-color:#5CAAB4;
-}
-#spiderman>.card-image>img{
-  width:130%;
-  height:90%;
-  margin-top:20px;
-  margin-left:-30px;
-}
-#spiderman h2{
-  font-size:3rem;
-  letter-spacing:5px;
-  text-align:center;
-  margin-left:10px;
-  color:#2E5579;
-}
-#spiderman>.card-text>div{
-  display:flex;
-  justify-content:space-between;
-  padding:10px;
-  padding-top:5px;
-}
-#spiderman>.card-text>div>div:first-child{
-  display:flex;
-  flex-direction:column;
-}
-#spiderman>.card-text>div>div:first-child>span{
-  font-size:1.5rem;
-  line-height:30px;
-  font-weight:500;
-}
-#spiderman>.card-text>div>div:last-child{
-  display:flex;
-}
-#spiderman>.card-text>div>div:last-child>span:first-child{
-  font-size:5rem;
-  font-weight:800;
-    line-height:60px;
+.see-more {
+  justify-self: flex-end;
+  text-align: right;
 }
 
-#spiderman>.card-text>div>div:last-child>span:last-child{
-  font-weight:600;
-  font-size:1.3rem;
-}
-
-.see-more{     
-    justify-self: flex-end;
-    text-align: right;
-}
-
-.more{
-    cursor: pointer;
-    color: #777878;
+.more {
+  cursor: pointer;
+  color: #777878;
 }
