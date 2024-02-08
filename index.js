@@ -48,9 +48,9 @@ container.addEventListener("click", (e) => {
       showBeerDetails();
   }
 })
-function showBeerDetails() {
+function showBeerDetails(id = null) {
   console.log("Button is working")
-  const beer = viewedBeers[viewedBeers.length-1];
+  const beer = id ?? viewedBeers[viewedBeers.length-1];
   console.log(cachedBeers[beer])
   beerInfoContainer.innerHTML = beerInfoCard(cachedBeers[beer]);
   randomBeerContainer.style.display = "none";  
@@ -173,3 +173,76 @@ function randomHexColor() {
   currentImgBgColor = color;
   return color;
 }
+
+
+const resultsPerPage = 10;
+let currentPage = 1;
+let totalPages = 1;
+
+let searchHistory = {};
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  currentPage = 1; // Reset current page to 1 when new search is performed
+  performSearch();
+});
+
+function performSearch() {
+  const searchQuery = document.getElementById('searchQuery').value.trim();
+  const apiUrl = `https://api.punkapi.com/v2/beers?beer_name=${searchQuery}`;
+
+  if (searchHistory[searchQuery]) {
+    displayResults(searchHistory[searchQuery]);
+  } else {
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        searchHistory[searchQuery] = data;
+        displayResults(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }
+}
+
+function displayResults(data) {
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = '';
+
+  if (data.length === 0) {
+    resultsDiv.textContent = 'No results found.';
+    return;
+  }
+
+  const ul = document.createElement('ul');
+  for (let i = (currentPage - 1) * resultsPerPage; i < Math.min(data.length, currentPage * resultsPerPage); i++) {
+    const beer = data[i];
+    const li = document.createElement('li');
+    li.textContent = beer.name;
+    cachedBeers[beer.id] = beer;
+    li.addEventListener('click', () => showBeerDetails(beer.id));
+    ul.appendChild(li);
+  }
+
+  resultsDiv.appendChild(ul);
+}
+
+document.getElementById('nextButton').addEventListener('click', function() {
+  currentPage++;
+  if(currentPage > 1){
+    document.getElementById('prevButton').disabled = false;
+  } else{
+    document.getElementById('prevButton').disabled = true;
+  }
+
+
+  performSearch();
+});
+
+document.getElementById('prevButton').addEventListener('click', function() {
+  if (currentPage > 1) {
+    currentPage--;
+    if(currentPage === 1){
+      document.getElementById('prevButton').disabled = true;}
+    performSearch();
+  }
+});
