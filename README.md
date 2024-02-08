@@ -8,13 +8,13 @@ Your are building a beer-wiki that uses data from [Punk API:et](https://punkapi.
 
 ### Requirements
 
-#### Landing Page (Random beer)
+#### Landing Page (Random beer) 
 
-- The user should be presented with a random beer when visiting the this page.
+- The user should be presented with a random beer when visiting the this page. ✅
 
-- The user should be able to get a random beer by clicking some sort of button.
+- The user should be able to get a random beer by clicking some sort of button. ✅
 
-- The name and a image of the beer should be presented as a card _(se below for an example)_.
+- The name and a image of the beer should be presented as a card _(se below for an example)_. ✅
 
 ![beer](./card.jpg)
 

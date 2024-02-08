@@ -12,6 +12,19 @@ header {
   background-repeat: no-repeat;
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #3c3c3c;
+  border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 @media screen and (max-width: 600px) {
   header {
     background-size: cover;
@@ -103,7 +116,8 @@ h2 {
   font-size: 30px;
 }
 #container {
-  width: 100vw;
+  width: 500px;
+  justify-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,7 +145,7 @@ h2 {
   height: 100%;
 }
 #random-beer > .card-image {
-  height: 55%; 
+  height: 55%;
 }
 #random-beer > .card-image > img {
   height: 100%;
@@ -193,4 +207,52 @@ h2 {
 .more {
   cursor: pointer;
   color: #777878;
+}
+
+.random-beer-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.left-arrow,
+.right-arrow {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 200px;
+}
+
+.right-arrow {
+  justify-self: flex-end;
+}
+
+.left-arrow svg,
+.right-arrow svg {
+  width: 200px;
+}
+
+.left-arrow span,
+.right-arrow span {
+  position: relative;
+  top: 108px;
+  font-weight: 600;
+}
+
+.left-arrow span {
+  left: 50px;
+}
+
+.right-arrow span {
+  left: 40px;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  color: #ffd052;
+}
+
+.hider {
+  display: none;
 }
