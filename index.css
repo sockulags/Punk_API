@@ -45,7 +45,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .title-wrapper {
@@ -59,9 +59,7 @@ body {
   text-align: center;
   display: block;
   color: #fff;
-  font-size: clamp(1rem, 4vw, 1.5rem);
-  margin-bottom: 1rem;
-  padding-right: 2rem;
+  font-size: clamp(1rem, 4vw, 1.5rem);   
 }
 
 .bottom-title {
@@ -70,8 +68,7 @@ body {
   display: block;
   color: #fff;
   font-size: clamp(1rem, 4vw, 1.5rem);
-  margin-top: 2rem;
-  padding-left: 2rem;
+  margin-top: 2rem; 
 }
 
 .sweet-title {
@@ -101,11 +98,11 @@ body {
     }
 
     &:nth-child(1) {
-      padding-right: 2.25rem;
+      padding-right: 1.25rem;
     }
 
     &:nth-child(2) {
-      padding-left: 2.25rem;
+      padding-left: 0.25rem;
     }
   }
 }
@@ -123,7 +120,7 @@ h2 {
   justify-content: center;
   margin: 0;
   padding: 0;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .card {
   margin: 0 30px;
@@ -144,10 +141,10 @@ h2 {
   z-index: 2;
   height: 100%;
 }
-#random-beer > .card-image {
+.card > .card-image {
   height: 55%;
 }
-#random-beer > .card-image > img {
+.card > .card-image > img {
   height: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -158,12 +155,12 @@ h2 {
   text-align: center;
   margin-top: 10px;
 }
-#random-beer p {
+.card p {
   font-size: 22px;
   font-weight: 500;
   text-align: center;
 }
-#random-beer > .card-text {
+.card > .card-text {
   height: 45%;
   display: flex;
   flex-direction: column;
@@ -255,4 +252,103 @@ h2 {
 
 .hider {
   display: none;
+}
+
+/* BEER INFO CONTAINER*/
+.beer-info-container{
+  margin: 50px auto;
+  width: 80vw; 
+  max-width: 1000px;
+  flex-direction: column;
+}
+
+.beer-info-container .card{ 
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+  "name picture"
+  "desc picture"
+  "tips picture"  
+  "info picture"
+  "info picture";
+  padding-left: 20px;
+  min-height: 600px;
+  height: fit-content;
+}
+
+.beer-info-container .card .card-image{
+  height: auto;
+  grid-area: picture;   
+  border-left: 5px solid #424141;
+  border-bottom: none;  
+  width: 40vw;
+  max-width: 500px;
+  height: 100%;
+}
+
+.beer-info-container .card .card-image img{
+ left:50%;
+ height: 90%;
+ top: 5%;
+ border-bottom: none;
+}
+
+.beer-info-container .beer-name{
+  place-items: left;
+ grid-area: name;
+}
+
+.beer-info-container .beer-tagline{
+  grid-area: tagline;
+ }
+
+ .beer-info-container .beer-desc{ 
+  grid-area: desc;
+ }
+
+ .beer-info-container .beer-info{ 
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+ }
+
+ .beer-info-container .beer-tips{ 
+  grid-area: tips;
+  display: flex;
+  place-content: center;
+  align-items: center;
+
+ }
+
+ .beer-info-container .card p,
+ .beer-info-container .card h2{
+  text-align: left;
+  margin-right: 20px;
+ }
+
+ .exit {
+  position: absolute;
+  font-size: 40px;
+  top: -3px;
+  right: -3px;
+  z-index: 10;  
+  background-color: rgba(255,255,255,1.0);
+  padding: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 0 7px #fff, 0 0 0px 0px #008cff;
+  color: transparent;
+  opacity: 0;
+  transition: opacity 0.3s ease-in, color 0.6s ease-in;
+}
+
+.exit:hover{
+  font-size: 50px;
+  padding:20px;
+}
+
+.exit.show {
+  opacity: 1;
+  color: #030300;
 }
