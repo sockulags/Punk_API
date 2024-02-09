@@ -2,6 +2,8 @@
 
 # Punk API
 
+[Live Demo](https://sockulags.github.io/Punk_API/)
+
 ## Features to add
 Since this is to practise API requests, Im not sure I will fix these additional things. But, here is a list of additional exercises and things Id like to add. 
 - Style beer info page
