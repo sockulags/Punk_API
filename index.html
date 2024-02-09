@@ -21,17 +21,23 @@
     </div>
   </section>
   <aside class="search-form">
-  <form id="searchForm">
-    <label for="searchQuery">Search:</label>
-    <input type="text" id="searchQuery" name="searchQuery">
-    <button type="submit">Search</button>
-  </form>
-  <div id="results"></div>
-  <div id="pagination">
-    <button id="prevButton" disabled>Previous</button>
-    <button id="nextButton">Next</button>
-  </div>
-</aside>
+    <form id="searchForm">
+      <div class="search-input-container">
+        <input type="text" class="search-input" id="searchQuery" name="searchQuery" autocomplete="off">
+        <label for="searchQuery"><span class="material-symbols-outlined search-icon">search</span></label>
+        <button type="submit" class="submit-button">Search</button>
+      </div>
+    </form>
+    <div id="results"></div>
+    <div id="pagination" class="hider">
+      <button id="prevButton" disabled><span class="material-symbols-outlined">
+        arrow_back
+        </span></button>
+      <button id="nextButton"><span class="material-symbols-outlined">
+        arrow_forward
+        </span></button>
+    </div>
+  </aside>
   <main>
     <div class="beer-info-container">
 

@@ -6,8 +6,8 @@ const nextBeerBtn = document.querySelector(".right-arrow-container");
 const audio = document.querySelector("audio");
 const readMoreBtn = document.getElementById("read_more_button");
 const randomBeerPage = document.querySelector(".random-beer-page");
-const beerInfoContainer = document.querySelector('.beer-info-container');
-const randomBeerContainer = document.querySelector('.random-beer-page');
+const beerInfoContainer = document.querySelector(".beer-info-container");
+const randomBeerContainer = document.querySelector(".random-beer-page");
 
 const nextBeerSound = "another-one_dPvHt2Z.mp3";
 const prevBeerSound = "ben-yes-made-with-Voicemod.mp3";
@@ -26,39 +26,37 @@ document.addEventListener("DOMContentLoaded", () => {
   previousBeerBtn.addEventListener("click", () => {
     playSound(prevBeerSound);
     setTimeout(loadPreviousBeer(), 500);
-  }); 
+  });
 
-  
   beerInfoContainer.addEventListener("mouseover", () => {
-    document.querySelector('.exit').classList.add('show');
-  })
+    document.querySelector(".exit").classList.add("show");
+  });
   beerInfoContainer.addEventListener("mouseleave", () => {
-    document.querySelector('.exit').classList.remove('show');
-  })
-  beerInfoContainer.addEventListener("click", (e)=> {
-    if(e.target === document.querySelector('.exit')){
-      hideBeerDetails()
+    document.querySelector(".exit").classList.remove("show");
+  });
+  beerInfoContainer.addEventListener("click", (e) => {
+    if (e.target === document.querySelector(".exit")) {
+      hideBeerDetails();
     }
-  })
+  });
 });
 
-
 container.addEventListener("click", (e) => {
-  if(e.target.parentElement.id === "read_more_button"){
-      showBeerDetails();
+  if (e.target.parentElement.id === "read_more_button") {
+    showBeerDetails();
   }
-})
+});
 function showBeerDetails(id = null) {
-  console.log("Button is working")
-  const beer = id ?? viewedBeers[viewedBeers.length-1];
-  console.log(cachedBeers[beer])
+  console.log("Button is working");
+  const beer = id ?? viewedBeers[viewedBeers.length - 1];
+  console.log(cachedBeers[beer]);
   beerInfoContainer.innerHTML = beerInfoCard(cachedBeers[beer]);
-  randomBeerContainer.style.display = "none";  
+  randomBeerContainer.style.display = "none";
 }
 
-function hideBeerDetails(){
+function hideBeerDetails() {
   beerInfoContainer.innerHTML = "";
-  randomBeerContainer.style.display = "";  
+  randomBeerContainer.style.display = "";
 }
 
 function showNextBeerBtn() {
@@ -68,7 +66,7 @@ function showNextBeerBtn() {
 function playSound(soundSrc) {
   audio.src = soundSrc;
   audio.volume = 0.05;
-  audio.play(); 
+  audio.play();
 }
 
 async function fetchRandomBeer() {
@@ -106,7 +104,7 @@ function cacheBeers(beers) {
 
 function loadPreviousBeer() {
   viewedBeers.pop();
-  const previousBeerId = viewedBeers[viewedBeers.length-1];
+  const previousBeerId = viewedBeers[viewedBeers.length - 1];
   if (viewedBeers.length < 2) {
     previousBeerBtn.classList.add("hider");
   }
@@ -117,6 +115,8 @@ function loadPreviousBeer() {
     console.error("Cached data not found for previous beer");
   }
 }
+
+
 
 function beerCard(randomBeer) {
   return `<div class="card" id="random-beer">
@@ -138,8 +138,10 @@ function beerCard(randomBeer) {
 }
 
 function beerInfoCard(beer) {
-  const foodPairings = beer.food_pairing.map(pairing => pairing + "\n").join('');
-  const maltIngredients = beer.ingredients.malt.map(m => m.name).join(', ');
+  const foodPairings = beer.food_pairing
+    .map((pairing) => pairing + "\n")
+    .join("");
+  const maltIngredients = beer.ingredients.malt.map((m) => m.name).join(", ");
 
   return `
     <div class="card">
@@ -155,14 +157,13 @@ function beerInfoCard(beer) {
       <div class="beer-info">
         <p>Alcohol by volume: ${beer.abv}%</p>
         <p>Volume: 20litres</p>
-        <p>Hops: ${beer.ingredients.hops.map(hop => hop.name).join(', ')}</p>
+        <p>Hops: ${beer.ingredients.hops.map((hop) => hop.name).join(", ")}</p>
         <p>Food pairing: ${foodPairings}</p>
         <p>Ingredients: ${maltIngredients}</p>
       </div>
       <p class="beer-tips">"This beer is all about the balance between the malty backbone of the beer and the fresh hop aroma. The fresher the hops the better."</p>
     </div>`;
 }
-
 
 function randomHexColor() {
   var letters = "0123456789ABCDEF";
@@ -174,75 +175,111 @@ function randomHexColor() {
   return color;
 }
 
-
 const resultsPerPage = 10;
 let currentPage = 1;
 let totalPages = 1;
 
 let searchHistory = {};
 
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  currentPage = 1; // Reset current page to 1 when new search is performed
-  performSearch();
-});
+document.getElementById("searchForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    currentPage = 1;
+    performSearch();
+  });
+
+  document.getElementById("searchQuery").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); 
+      document.getElementById("searchForm").dispatchEvent(new Event("submit"));
+    }
+  });
 
 function performSearch() {
-  const searchQuery = document.getElementById('searchQuery').value.trim();
+  let searchQuery = document.getElementById("searchQuery").value.trim();
   const apiUrl = `https://api.punkapi.com/v2/beers?beer_name=${searchQuery}`;
+
+  searchQuery.replace(" ", "_");
 
   if (searchHistory[searchQuery]) {
     displayResults(searchHistory[searchQuery]);
   } else {
     fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         searchHistory[searchQuery] = data;
         displayResults(data);
       })
-      .catch(error => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   }
 }
 
 function displayResults(data) {
-  const resultsDiv = document.getElementById('results');
-  resultsDiv.innerHTML = '';
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
 
   if (data.length === 0) {
-    resultsDiv.textContent = 'No results found.';
+    resultsDiv.textContent = "No results found.";
     return;
   }
 
-  const ul = document.createElement('ul');
-  for (let i = (currentPage - 1) * resultsPerPage; i < Math.min(data.length, currentPage * resultsPerPage); i++) {
+  const ul = document.createElement("ul");
+  for (
+    let i = (currentPage - 1) * resultsPerPage;
+    i < Math.min(data.length, currentPage * resultsPerPage);
+    i++
+  ) {
     const beer = data[i];
-    const li = document.createElement('li');
+    const li = document.createElement("li");
     li.textContent = beer.name;
     cachedBeers[beer.id] = beer;
-    li.addEventListener('click', () => showBeerDetails(beer.id));
+    li.addEventListener("click", () => showBeerDetails(beer.id));
     ul.appendChild(li);
   }
-
-  resultsDiv.appendChild(ul);
-}
-
-document.getElementById('nextButton').addEventListener('click', function() {
-  currentPage++;
-  if(currentPage > 1){
-    document.getElementById('prevButton').disabled = false;
-  } else{
-    document.getElementById('prevButton').disabled = true;
+  totalPages = Math.ceil(data.length / 10);
+  if (totalPages === currentPage) {
+    document.getElementById("nextButton").disabled = true;
+  } else {
+    document.getElementById("nextButton").disabled = false;
   }
 
+  if (totalPages !== 1) {
+    document.getElementById("pagination").classList.remove("hider");
+  }
+  resultsDiv.appendChild(ul);
+  var timeoutId; // Variable to hold the timeout ID
 
+  searchFormContainer.querySelector("ul").classList.add('expanded');
+  searchFormContainer.addEventListener('mouseenter', function() {
+      searchFormContainer.querySelector("ul").classList.add('expanded');
+      clearTimeout(timeoutId); // Clear any existing timeout
+  });
+  searchFormContainer.addEventListener('mouseleave', function() {
+      timeoutId = setTimeout(function() {
+          searchFormContainer.querySelector("ul").classList.remove('expanded');
+      }, 1000);
+  });
+  
+}
+
+document.getElementById("nextButton").addEventListener("click", function () {
+  currentPage++;
+  if (currentPage > 1) {
+    document.getElementById("prevButton").disabled = false;
+  } else {
+    document.getElementById("prevButton").disabled = true;
+  }
   performSearch();
 });
 
-document.getElementById('prevButton').addEventListener('click', function() {
+document.getElementById("prevButton").addEventListener("click", function () {
   if (currentPage > 1) {
     currentPage--;
-    if(currentPage === 1){
-      document.getElementById('prevButton').disabled = true;}
+    if (currentPage === 1) {
+      document.getElementById("prevButton").disabled = true;
+    }
     performSearch();
   }
 });
+
+
+const searchFormContainer = document.querySelector('.search-form');

@@ -250,9 +250,6 @@ h2 {
   color: #ffd052;
 }
 
-.hider {
-  display: none;
-}
 
 /* BEER INFO CONTAINER*/
 .beer-info-container{
@@ -351,4 +348,182 @@ h2 {
 .exit.show {
   opacity: 1;
   color: #030300;
+}
+
+/* SEARCH INPUT */
+.search-input-container {
+  position: relative;
+}
+
+.search-input {
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  height: 30px;
+  margin-left: 40px;
+  width: calc(100% - 40px); /* Adjust width as needed */
+  padding-inline: 10px;
+  font-size: 16px;  
+  border-radius: 5px 5px 0 0 ;
+}
+
+.search-icon {
+  position: absolute;
+  top: 0;
+  left: 0px; 
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px; 
+  color: #000000; 
+  cursor: pointer;
+  font-size: 24px; 
+}
+
+.submit-button {
+  display: none;
+}
+
+.search-input:focus + .submit-button {
+  display: inline-block;
+  outline: none;
+}
+
+.search-input:focus{
+  background-color: rgba(240, 240, 240, 0.8);
+  outline: none;
+}
+
+.search-form {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  background-color: #ffd052;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transition-delay: 1s;
+  z-index: 10;
+  color: transparent;
+  background-color: transparent;
+}
+
+.search-form:focus-within,
+.search-form:hover {  
+  color: black;
+  transition-delay: 0s;
+}
+
+.search-form::before + #nextButton,
+.search-form + #prevbutton{
+display: none;
+}
+
+#results {
+  position: relative;
+  margin-top: 0px;
+  padding: 0px;  
+  width: 240px;
+  left: 40px;  
+}
+
+ul{
+ list-style: none;
+ width: 100%;
+ border-top: 1px solid #c7c7c7;
+ margin-left: 0;
+ padding: 5px 12px;
+ background-color: rgba(240, 240, 240, 0.8);
+ border-radius: 0 0 5px 5px;
+ position: relative;
+ overflow: hidden; 
+ height: 0;
+ transition: height 0.3s ease;
+
+}
+
+ul.expanded{
+  height: auto;
+  transition-delay: 1s;
+}
+
+ 
+
+ul:not(:hover) {
+  transition-delay: 1s; /* Apply transition delay when not hovering */
+}
+
+li{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin:0;
+  font-family: "Exo 2", sans-serif;
+  padding: 5px;
+  border-bottom: 1px solid #c7c7c7;
+  font-size: 14px;
+}
+
+li:hover{
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#pagination {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin-top: 0px;
+  left: 40px;
+  width: 240px;
+}
+
+#prevButton,
+#nextButton {
+  padding: 0;  
+  background-color:  rgba(240, 240, 240, 0.8);
+  color: #000000;
+  border: none;  
+  cursor: pointer;
+  width: 50px;
+}
+
+#prevButton:hover,
+#nextButton:hover{
+  background-color: #424141;
+  color: #f5f5f5;
+}
+
+#prevButton{
+  width: 100%;
+}
+
+#nextButton{
+ width: 100%;
+}
+
+#prevButton,
+#nextButton {
+  opacity: 0;
+  transition-delay: 1s;
+}
+
+.search-form:hover #prevButton,
+.search-form:hover #nextButton,
+.search-form:focus-within #prevButton,
+.search-form:focus-within #nextButton {
+ opacity: 1;
+  transition: opacity 0.3s ease;
+  transition-delay: 0s;
+}
+
+#prevButton:disabled,
+#nextButton:disabled {
+  display: none;
+}
+
+#pagination.hider,
+.hider {
+  display: none;
 }
