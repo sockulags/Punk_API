@@ -16,6 +16,21 @@ let currentImgBgColor = "";
 const viewedBeers = [];
 const cachedBeers = {};
 
+document.addEventListener("click", (e) => {
+  const searchFormInput = document.getElementById("searchQuery");
+  const searchResultsDiv = document.getElementById("results");
+  const nextButton = document.getElementById("nextButton");
+  const prevButton = document.getElementById("prevButton");
+
+  if (!e.target.closest("aside")) {
+    searchFormInput.value = "";
+    searchResultsDiv.innerHTML = "";
+    nextButton.disabled = true;
+    prevButton.disabled = true;
+    document.getElementById("pagination").classList.add("hider");
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   loadNewBeer();
   setTimeout(showNextBeerBtn, 1000);
@@ -54,6 +69,7 @@ function showBeerDetails(id = null) {
   randomBeerContainer.style.display = "none";
 }
 
+
 function hideBeerDetails() {
   beerInfoContainer.innerHTML = "";
   randomBeerContainer.style.display = "";
@@ -77,7 +93,6 @@ async function fetchRandomBeer() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data[0]);
     return data[0];
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
@@ -116,12 +131,9 @@ function loadPreviousBeer() {
   }
 }
 
-
-
 function beerCard(randomBeer) {
   return `<div class="card" id="random-beer">
 <div class="card-image" style="background-color:${randomHexColor()}">
-
   <img src="${randomBeer.image_url ?? imageNotFound}"/>
 </div>
 <div class="card-text">
@@ -182,17 +194,17 @@ let totalPages = 1;
 let searchHistory = {};
 
 document.getElementById("searchForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    currentPage = 1;
-    performSearch();
-  });
+  e.preventDefault();
+  currentPage = 1;
+  performSearch();
+});
 
-  document.getElementById("searchQuery").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault(); 
-      document.getElementById("searchForm").dispatchEvent(new Event("submit"));
-    }
-  });
+document.getElementById("searchQuery").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("searchForm").dispatchEvent(new Event("submit"));
+  }
+});
 
 function performSearch() {
   let searchQuery = document.getElementById("searchQuery").value.trim();
@@ -216,56 +228,23 @@ function performSearch() {
 function displayResults(data) {
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "";
-
   if (data.length === 0) {
     resultsDiv.textContent = "No results found.";
     return;
   }
-
-  const ul = document.createElement("ul");
-  for (
-    let i = (currentPage - 1) * resultsPerPage;
-    i < Math.min(data.length, currentPage * resultsPerPage);
-    i++
-  ) {
-    const beer = data[i];
-    const li = document.createElement("li");
-    li.textContent = beer.name;
-    cachedBeers[beer.id] = beer;
-    li.addEventListener("click", () => showBeerDetails(beer.id));
-    ul.appendChild(li);
-  }
-  totalPages = Math.ceil(data.length / 10);
-  if (totalPages === currentPage) {
-    document.getElementById("nextButton").disabled = true;
-  } else {
-    document.getElementById("nextButton").disabled = false;
-  }
-
-  if (totalPages !== 1) {
-    document.getElementById("pagination").classList.remove("hider");
-  }
+  const ul = createBeerList(data);
   resultsDiv.appendChild(ul);
-  var timeoutId; // Variable to hold the timeout ID
 
-  searchFormContainer.querySelector("ul").classList.add('expanded');
-  searchFormContainer.addEventListener('mouseenter', function() {
-      searchFormContainer.querySelector("ul").classList.add('expanded');
-      clearTimeout(timeoutId); // Clear any existing timeout
-  });
-  searchFormContainer.addEventListener('mouseleave', function() {
-      timeoutId = setTimeout(function() {
-          searchFormContainer.querySelector("ul").classList.remove('expanded');
-      }, 1000);
-  });
-  
+  handlePagination(data.length);
+  handleSearchResultList();
 }
 
 document.getElementById("nextButton").addEventListener("click", function () {
   currentPage++;
-  if (currentPage > 1) {
+  const prevButton = document.getElementById("prevButton");
+  if (currentPage > 1 && prevButton) {
     document.getElementById("prevButton").disabled = false;
-  } else {
+  } else if (prevButton) {
     document.getElementById("prevButton").disabled = true;
   }
   performSearch();
@@ -281,5 +260,45 @@ document.getElementById("prevButton").addEventListener("click", function () {
   }
 });
 
+const searchFormContainer = document.querySelector(".search-form");
 
-const searchFormContainer = document.querySelector('.search-form');
+function createBeerList(data) {
+  const ul = document.createElement("ul");
+  for (let i = (currentPage - 1) * resultsPerPage; i < Math.min(data.length, currentPage * resultsPerPage); i++) {
+    const beer = data[i];
+    const li = document.createElement("li");
+    li.textContent = beer.name;
+    cachedBeers[beer.id] = beer;
+    li.addEventListener("click", () => showBeerDetails(beer.id));
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+function handlePagination(dataLength) {
+  totalPages = Math.ceil(dataLength / 10);
+  if (totalPages === currentPage) {
+    document.getElementById("nextButton").disabled = true;
+  } else {
+    document.getElementById("nextButton").disabled = false;
+  }
+
+  if (totalPages !== 1) {
+    document.getElementById("pagination").classList.remove("hider");
+  }
+}
+
+function handleSearchResultList() {
+  let timeoutId;
+  const searchList = searchFormContainer.querySelector("ul");
+  searchList.classList.add("expanded");
+  searchFormContainer.addEventListener("mouseenter", () => {
+    if (searchList) searchList.classList.add("expanded");
+    clearTimeout(timeoutId);
+  });
+  searchFormContainer.addEventListener("mouseleave", () => {
+    timeoutId = setTimeout(() => {
+      if (searchList) searchList.classList.remove("expanded");
+    }, 1000);
+  });
+}
