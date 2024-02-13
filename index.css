@@ -44,8 +44,7 @@ body {
   padding: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: center; 
 }
 
 .title-wrapper {
@@ -113,19 +112,15 @@ h2 {
   font-size: 30px;
 }
 #container {
-  width: 500px;
-  justify-self: center;
+  max-width: 350px; 
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
+  justify-content: center; 
 }
 .card {
   margin: 0 30px;
-  height: 600px;
-  width: 350px;
+  height: fit-content;
+  width: 100%;
   background-color: #fff;
   border: 5px solid rgb(61, 60, 60);
   box-shadow: 0 0 0 7px #fff, 0 0 8px 5px #008cff;
@@ -137,12 +132,12 @@ h2 {
   z-index: 1;
 }
 .card-image > img {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  height: 100%;
+  height: 270px;
 }
 .card > .card-image {
-  height: 55%;
+  height: 250px;
 }
 .card > .card-image > img {
   height: 100%;
@@ -213,43 +208,17 @@ h2 {
   margin-bottom: 100px;
 }
 
-.left-arrow,
-.right-arrow {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  width: 200px;
-}
-
-.right-arrow {
-  justify-self: flex-end;
-}
-
 .left-arrow svg,
 .right-arrow svg {
-  width: 200px;
-}
-
-.left-arrow span,
-.right-arrow span {
-  position: relative;
-  top: 108px;
-  font-weight: 600;
-}
-
-.left-arrow span {
-  left: 50px;
-}
-
-.right-arrow span {
-  left: 40px;
+  width: 50px;
+  margin: 50px;
+  cursor: pointer;
 }
 
 .left-arrow:hover,
-.right-arrow:hover {
-  color: #ffd052;
+.right-arrow:hover{
+  
 }
-
 
 /* BEER INFO CONTAINER*/
 .beer-info-container{
@@ -257,19 +226,19 @@ h2 {
   width: 80vw; 
   max-width: 1000px;
   flex-direction: column;
+
 }
 
 .beer-info-container .card{ 
   width: 100%;
   display: grid;
   grid-template-areas:
-  "name picture"
-  "desc picture"
-  "tips picture"  
-  "info picture"
-  "info picture";
+  "name name picture"
+  "desc desc picture"
+  "tips tips picture"  
+  "info info picture"
+  "info info picture";
   padding-left: 20px;
-  min-height: 600px;
   height: fit-content;
 }
 
@@ -278,21 +247,27 @@ h2 {
   grid-area: picture;   
   border-left: 5px solid #424141;
   border-bottom: none;  
-  width: 40vw;
+  width: 30vw;
   max-width: 500px;
-  height: 100%;
+  height: 100%; 
 }
 
 .beer-info-container .card .card-image img{
  left:50%;
- height: 90%;
- top: 5%;
+ height:300px;
+ top: 50%;
+ transform: translate(-50%,-50%);
  border-bottom: none;
 }
 
 .beer-info-container .beer-name{
   place-items: left;
- grid-area: name;
+  grid-area: name;
+}
+
+.beer-info-container .beer-name p{
+  font-size: 16px;
+  font-style: italic;
 }
 
 .beer-info-container .beer-tagline{
@@ -307,23 +282,23 @@ h2 {
   grid-area: info;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   padding-bottom: 20px;
  }
 
  .beer-info-container .beer-tips{ 
-  grid-area: tips;
-  display: flex;
-  place-content: center;
-  align-items: center;
-
- }
+  grid-area: tips;  
+  }
 
  .beer-info-container .card p,
  .beer-info-container .card h2{
   text-align: left;
   margin-right: 20px;
  }
+
+ .beer-info-container p {
+  font-size: 16px;
+ }
+
 
  .exit {
   position: absolute;
@@ -339,6 +314,8 @@ h2 {
   opacity: 0;
   transition: opacity 0.3s ease-in, color 0.6s ease-in;
 }
+
+
 
 .exit:hover{
   font-size: 50px;
@@ -448,10 +425,8 @@ ul.expanded{
   transition-delay: 1s;
 }
 
- 
-
 ul:not(:hover) {
-  transition-delay: 1s; /* Apply transition delay when not hovering */
+  transition-delay: 1s; 
 }
 
 li{
@@ -527,3 +502,5 @@ li:hover{
 .hider {
   display: none;
 }
+
+

@@ -165,15 +165,15 @@ function beerInfoCard(beer) {
         <h2>${beer.name}</h2>
         <p>${beer.tagline}</p> 
       </div>                
-      <p class="beer-desc">${beer.description}</p>
+      <p class="beer-desc"><strong>Description: </strong>${beer.description}</p>
       <div class="beer-info">
-        <p>Alcohol by volume: ${beer.abv}%</p>
-        <p>Volume: 20litres</p>
-        <p>Hops: ${beer.ingredients.hops.map((hop) => hop.name).join(", ")}</p>
-        <p>Food pairing: ${foodPairings}</p>
-        <p>Ingredients: ${maltIngredients}</p>
+        <p><strong>Alcohol by volume:</strong> ${beer.abv}%</p>
+        <p><strong>Volume:</strong> ${beer.volume.value} ${beer.volume.unit}</p>
+        <p><strong>Hops:</strong> ${beer.ingredients.hops.map((hop) => hop.name).join(", ")}</p>
+        <p><strong>Food pairing:</strong> ${foodPairings}</p>
+        <p><strong>Ingridients: </strong> ${maltIngredients}</p>
       </div>
-      <p class="beer-tips">"This beer is all about the balance between the malty backbone of the beer and the fresh hop aroma. The fresher the hops the better."</p>
+      <p class="beer-tips"><strong>Tips: </strong>${beer.brewers_tips}</p>
     </div>`;
 }
 
