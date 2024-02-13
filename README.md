@@ -2,6 +2,16 @@
 
 # Punk API
 
+[Live Demo](https://sockulags.github.io/Punk_API/)
+
+## Features to add
+Since this is to practise API requests, Im not sure I will fix these additional things. But, here is a list of additional exercises and things Id like to add. 
+- Style beer info page
+- Make site respoonsive
+- Add advanced search
+- Instead of arrows for next and previous card, make it behave like a deck of cards.
+
+  
 ## Instructions
 
 Your are building a beer-wiki that uses data from [Punk API:et](https://punkapi.com/documentation/v2). The web page will have three different views _(see further down for more information on each of the views)_. The views don't necessarily have to be seperate HTML documents. One HTML document that uses JavaScript to dynamically change the different views is totally cool as well. The most important requirement is that only ONE view can displayed at the time. Apart from the requirements that are listed further down, you have free reins.
@@ -22,21 +32,21 @@ Your are building a beer-wiki that uses data from [Punk API:et](https://punkapi.
 
 #### Search Page
 
-- The user should be able to search for a beer using its name.
+- The user should be able to search for a beer using its name. ✅
 
-- The page should have a form on it that is using the submit event.
+- The page should have a form on it that is using the submit event. ✅
 
-- The results of the search should be displayed in a list. Only the name of the beers should be in this list.
+- The results of the search should be displayed in a list. Only the name of the beers should be in this list. ✅
 
-- The list can contain a maximum of 10 results. If there are more than 10 beers in the results, the list should be paginated.
+- The list can contain a maximum of 10 results. If there are more than 10 beers in the results, the list should be paginated. ✅
 
-- If you click on a beer in the list, you should go to the `Beer Info Page`.
+- If you click on a beer in the list, you should go to the `Beer Info Page`. ✅
 
 #### Beer Info Page
 
-- This page should only be possible to reach through one of the pages above.
+- This page should only be possible to reach through one of the pages above. ✅
 
-- On this page the user should get detailed information on a specific beer including the following:
+- On this page the user should get detailed information on a specific beer including the following: ✅
   - Description
   - Image
   - Alcohol by volume _(ABV)_
@@ -58,4 +68,4 @@ Your are building a beer-wiki that uses data from [Punk API:et](https://punkapi.
   - Brewes Before & Brewed After
   - ABV greater than & ABV less than
 - The search form should contain relevant validation.
-- Cache the results. If you revisit a beer, you shouldn't need to make another request to the API.
+- Cache the results. If you revisit a beer, you shouldn't need to make another request to the API. ✅
